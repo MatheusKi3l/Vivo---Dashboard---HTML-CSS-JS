@@ -10,132 +10,187 @@
 </head>
 
 <body>
-    <button class="menu-toggle" id="menuToggle">☰</button>
 
-    <div class="layout-wrapper">
-
-        <nav class="menu-lateral" id="menuLateral">
-            <div class="header-menu">
-                <h2>Celeste</h2>
+    <header class="header-flutuante">
+        <a href="" class="logo-link">
+            <div class="logo-area">
+                <span class="logo-texto">Celeste</span>
             </div>
+        </a>
+    </header>
 
-            <div class="opcoes-menu">
-                <p>PAINEL</p>
-                <a href="#" class="btn-menu ativo">📊 Dashboard</a>
-                <a href="#" class="btn-menu">🚚 Transportadoras</a>
-                <a href="#" class="btn-menu">🗺️ Regiões</a>
-                <a href="#" class="btn-menu">📦 Entregas</a>
+    <div class="dashboard-container">
+        <div class="main-titulo-area">
+            <div class="titulo-texto">
+                <span>Monitoramento de Prazos</span>
+                <p>Análise de performance e atrasos de frete</p>
             </div>
-        </nav>
-
-        <section class="dashboard">
-            <header>
-                <div class="titulo-header">
-                    <span>Monitoramento de Prazos</span>
-                    <p>Análise de performance e atrasos de frete</p>
-                </div>
-                <div class="filtros-header">
-                    <div class="filtro-grupo">
-                        <label for="filtroRegiao">Região</label>
-                        <div class="select-custom">
-                            <select id="filtroRegiao" class="btn-header">
-                                <option value="Todas">Todas</option>
-                                <option value="Sudeste">Sudeste</option>
-                                <option value="Sul">Sul</option>
-                                <option value="Nordeste">Nordeste</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="filtro-grupo">
-                        <label for="filtroEmpresa">Empresa</label>
-                        <div class="select-custom">
-                            <select id="filtroEmpresa" class="btn-header">
-                                <option value="Todas">Todas</option>
-                                <option value="RotaMax">RotaMax</option>
-                                <option value="ViaCargo">ViaCargo</option>
-                                <option value="FlashLog">FlashLog</option>
-                            </select>
-                        </div>
+            <div class="filtros-header">
+                <div class="filtro-grupo">
+                    <label for="filtroRegiao">Região</label>
+                    <div class="select-custom">
+                        <select id="filtroRegiao" class="btn-header">
+                            <option value="Todas">Todas</option>
+                            <option value="Sudeste">Sudeste</option>
+                            <option value="Sul">Sul</option>
+                            <option value="Nordeste">Nordeste</option>
+                            <option value="Norte">Norte</option>
+                            <option value="Centro-Oeste">Centro-Oeste</option>
+                        </select>
                     </div>
                 </div>
-            </header>
 
-            <div class="kpis-container">
-                <div class="card-kpi">
-                    <span>TOTAL DE REMESSAS</span>
-                    <h3 id="kpiTotal">10</h3>
-                </div>
-                <div class="card-kpi alerta">
-                    <span>REMESSAS EM ATRASO</span>
-                    <h3 id="kpiAtraso">7</h3>
-                </div>
-                <div class="card-kpi">
-                    <span>ÍNDICE DE ATRASO</span>
-                    <h3 id="kpiIndice">70%</h3>
-                </div>
-            </div>
-
-            <div class="graficos-container">
-                <div class="card-grafico">
-                    <h4>Atrasos por Frota</h4>
-                    <div class="canvas-holder">
-                        <canvas id="chartFrota"></canvas>
-                    </div>
-                </div>
-                <div class="card-grafico">
-                    <h4>Zonas com Maior Gargalo</h4>
-                    <div class="canvas-holder">
-                        <canvas id="chartRegiao"></canvas>
+                <div class="filtro-grupo">
+                    <label for="filtroEmpresa">Empresa</label>
+                    <div class="select-custom">
+                        <select id="filtroEmpresa" class="btn-header">
+                            <option value="Todas">Todas</option>
+                            <option value="RotaMax">RotaMax</option>
+                            <option value="ViaCargo">ViaCargo</option>
+                            <option value="FlashLog">FlashLog</option>
+                        </select>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="tabela-container">
-                <h4>Logs de Ocorrências Extranet</h4>
-                <div class="tabela-responsiva">
-                    <table id="tabelaLogs">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>TRANSPORTADORA</th>
-                                <th>REGIÃO</th>
-                                <th>ACORDADO</th>
-                                <th>REALIZADO</th>
-                                <th>STATUS</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr data-regiao="Sudeste" data-empresa="RotaMax" data-status="ATRASADO">
-                                <td>#301</td>
-                                <td>RotaMax</td>
-                                <td>Sudeste</td>
-                                <td>3 dias</td>
-                                <td>7 dias</td>
-                                <td><span class="badge atrasado">ATRASADO</span></td>
-                            </tr>
-                            <tr data-regiao="Sul" data-empresa="ViaCargo" data-status="NO PRAZO">
-                                <td>#302</td>
-                                <td>ViaCargo</td>
-                                <td>Sul</td>
-                                <td>5 dias</td>
-                                <td>5 dias</td>
-                                <td><span class="badge no-prazo">NO PRAZO</span></td>
-                            </tr>
-                            <tr data-regiao="Nordeste" data-empresa="FlashLog" data-status="ATRASADO">
-                                <td>#303</td>
-                                <td>FlashLog</td>
-                                <td>Nordeste</td>
-                                <td>4 dias</td>
-                                <td>9 dias</td>
-                                <td><span class="badge atrasado">ATRASADO</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <div class="kpis-container">
+            <div class="card-kpi">
+                <span>TOTAL DE REMESSAS</span>
+                <h3 id="kpiTotal">0</h3>
+            </div>
+            <div class="card-kpi alerta">
+                <span>REMESSAS EM ATRASO</span>
+                <h3 id="kpiAtraso">0</h3>
+            </div>
+            <div class="card-kpi">
+                <span>ÍNDICE DE ATRASO</span>
+                <h3 id="kpiIndice">0%</h3>
+            </div>
+        </div>
+
+        <div class="graficos-container">
+            <div class="card-grafico">
+                <h4>Atrasos por Frota</h4>
+                <div class="canvas-holder">
+                    <canvas id="chartFrota"></canvas>
                 </div>
             </div>
-        </section>
+            <div class="card-grafico">
+                <h4>Zonas com Maior Gargalo</h4>
+                <div class="canvas-holder">
+                    <canvas id="chartRegiao"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabela-container">
+            <h4>Logs de Ocorrências Extranet</h4>
+            <div class="tabela-responsiva">
+                <table id="tabelaLogs">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>TRANSPORTADORA</th>
+                            <th>REGIÃO</th>
+                            <th>ACORDADO</th>
+                            <th>REALIZADO</th>
+                            <th>STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-regiao="Sudeste" data-empresa="RotaMax" data-status="ATRASADO">
+                            <td>#301</td>
+                            <td>RotaMax</td>
+                            <td>Sudeste</td>
+                            <td>3 dias</td>
+                            <td>7 dias</td>
+                            <td><span class="badge atrasado">ATRASADO</span></td>
+                        </tr>
+                        <tr data-regiao="Sul" data-empresa="ViaCargo" data-status="NO PRAZO">
+                            <td>#302</td>
+                            <td>ViaCargo</td>
+                            <td>Sul</td>
+                            <td>5 dias</td>
+                            <td>5 dias</td>
+                            <td><span class="badge no-prazo">NO PRAZO</span></td>
+                        </tr>
+                        <tr data-regiao="Nordeste" data-empresa="FlashLog" data-status="ATRASADO">
+                            <td>#303</td>
+                            <td>FlashLog</td>
+                            <td>Nordeste</td>
+                            <td>4 dias</td>
+                            <td>9 dias</td>
+                            <td><span class="badge atrasado">ATRASADO</span></td>
+                        </tr>
+                        <tr data-regiao="Norte" data-empresa="RotaMax" data-status="NO PRAZO">
+                            <td>#304</td>
+                            <td>RotaMax</td>
+                            <td>Norte</td>
+                            <td>6 dias</td>
+                            <td>4 dias</td>
+                            <td><span class="badge no-prazo">NO PRAZO</span></td>
+                        </tr>
+                        <tr data-regiao="Centro-Oeste" data-empresa="ViaCargo" data-status="ATRASADO">
+                            <td>#305</td>
+                            <td>ViaCargo</td>
+                            <td>Centro-Oeste</td>
+                            <td>2 dias</td>
+                            <td>6 dias</td>
+                            <td><span class="badge atrasado">ATRASADO</span></td>
+                        </tr>
+                        <tr data-regiao="Sul" data-empresa="FlashLog" data-status="ATRASADO">
+                            <td>#306</td>
+                            <td>FlashLog</td>
+                            <td>Sul</td>
+                            <td>5 dias</td>
+                            <td>12 dias</td>
+                            <td><span class="badge atrasado">ATRASADO</span></td>
+                        </tr>
+                        <tr data-regiao="Sul" data-empresa="RotaMax" data-status="ATRASADO">
+                            <td>#307</td>
+                            <td>RotaMax</td>
+                            <td>Sul</td>
+                            <td>6 dias</td>
+                            <td>9 dias</td>
+                            <td><span class="badge atrasado">ATRASADO</span></td>
+                        </tr>
+                        <tr data-regiao="Sudeste" data-empresa="ViaCargo" data-status="ATRASADO">
+                            <td>#308</td>
+                            <td>ViaCargo</td>
+                            <td>Sudeste</td>
+                            <td>3 dias</td>
+                            <td>4 dias</td>
+                            <td><span class="badge atrasado">ATRASADO</span></td>
+                        </tr>
+                        <tr data-regiao="Norte" data-empresa="FlashLog" data-status="NO PRAZO">
+                            <td>#309</td>
+                            <td>FlashLog</td>
+                            <td>Norte</td>
+                            <td>5 dias</td>
+                            <td>5 dias</td>
+                            <td><span class="badge no-prazo">NO PRAZO</span></td>
+                        </tr>
+                        <tr data-regiao="Nordeste" data-empresa="ViaCargo" data-status="ATRASADO">
+                            <td>#310</td>
+                            <td>ViaCargo</td>
+                            <td>Nordeste</td>
+                            <td>4 dias</td>
+                            <td>8 dias</td>
+                            <td><span class="badge atrasado">ATRASADO</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>Integrantes do Grupo: Matheus Henrique Kiel Lourenço Silva, Vinícius Melo Silva, Caio Henrique de Almeida</p>
+            <p>Orintador do Grupo: Bruno Camargo Ribeiro</p>
+        </div>
+    </footer>
 
     <script src="./script.js"></script>
 </body>

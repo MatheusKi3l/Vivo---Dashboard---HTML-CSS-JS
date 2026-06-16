@@ -1,18 +1,3 @@
-const menuToggle = document.getElementById('menuToggle');
-const menuLateral = document.getElementById('menuLateral');
-
-menuToggle.addEventListener('click', (e) => {
-    menuLateral.classList.toggle('aberto');
-    e.stopPropagation();
-});
-
-document.addEventListener('click', (e) => {
-    if (!menuLateral.contains(e.target) && e.target !== menuToggle) {
-        menuLateral.classList.remove('aberto');
-    }
-});
-
-
 const ctxFrota = document.getElementById('chartFrota').getContext('2d');
 const ctxRegiao = document.getElementById('chartRegiao').getContext('2d');
 
@@ -34,7 +19,7 @@ const chartFrota = new Chart(ctxFrota, {
         labels: ['RotaMax', 'ViaCargo', 'FlashLog'],
         datasets: [{
             label: 'Remessas em Atraso',
-            data: [4, 1, 2],
+            data: [0, 0, 0],
             backgroundColor: '#A855F7',
             borderRadius: 4
         }]
@@ -45,10 +30,10 @@ const chartFrota = new Chart(ctxFrota, {
 const chartRegiao = new Chart(ctxRegiao, {
     type: 'line',
     data: {
-        labels: ['Sudeste', 'Sul', 'Nordeste'],
+        labels: ['Sudeste', 'Sul', 'Nordeste', 'Norte', 'Centro-Oeste'],
         datasets: [{
             label: 'Ocorrências',
-            data: [5, 2, 4],
+            data: [0, 0, 0, 0, 0],
             borderColor: '#F43E4E',
             backgroundColor: 'rgba(244, 62, 78, 0.1)',
             tension: 0.3,
@@ -57,7 +42,6 @@ const chartRegiao = new Chart(ctxRegiao, {
     },
     options: chartOptions
 });
-
 
 const filtroRegiao = document.getElementById('filtroRegiao');
 const filtroEmpresa = document.getElementById('filtroEmpresa');
@@ -71,7 +55,7 @@ function atualizarDashboard() {
     let remessasAtrasadas = 0;
 
     let dadosFrota = { 'RotaMax': 0, 'ViaCargo': 0, 'FlashLog': 0 };
-    let dadosRegiao = { 'Sudeste': 0, 'Sul': 0, 'Nordeste': 0 };
+    let dadosRegiao = { 'Sudeste': 0, 'Sul': 0, 'Nordeste': 0, 'Norte': 0, 'Centro-Oeste': 0 };
 
     tabelaLinhas.forEach(linha => {
         const regiaoLinha = linha.getAttribute('data-regiao');
