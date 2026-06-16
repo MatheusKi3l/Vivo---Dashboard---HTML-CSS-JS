@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Dashboard Celeste</title>
+</head>
+
+<body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+
+    <div class="layout-wrapper">
+
+        <nav class="menu-lateral" id="menuLateral">
+            <div class="header-menu">
+                <h2>Celeste</h2>
+            </div>
+
+            <div class="opcoes-menu">
+                <p>PAINEL</p>
+                <a href="#" class="btn-menu ativo">📊 Dashboard</a>
+                <a href="#" class="btn-menu">🚚 Transportadoras</a>
+                <a href="#" class="btn-menu">🗺️ Regiões</a>
+                <a href="#" class="btn-menu">📦 Entregas</a>
+            </div>
+        </nav>
+
+        <section class="dashboard">
+            <header>
+                <div class="titulo-header">
+                    <span>Monitoramento de Prazos</span>
+                    <p>Análise de performance e atrasos de frete</p>
+                </div>
+                <div class="filtros-header">
+                    <div class="filtro-grupo">
+                        <label for="filtroRegiao">Região</label>
+                        <div class="select-custom">
+                            <select id="filtroRegiao" class="btn-header">
+                                <option value="Todas">Todas</option>
+                                <option value="Sudeste">Sudeste</option>
+                                <option value="Sul">Sul</option>
+                                <option value="Nordeste">Nordeste</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="filtro-grupo">
+                        <label for="filtroEmpresa">Empresa</label>
+                        <div class="select-custom">
+                            <select id="filtroEmpresa" class="btn-header">
+                                <option value="Todas">Todas</option>
+                                <option value="RotaMax">RotaMax</option>
+                                <option value="ViaCargo">ViaCargo</option>
+                                <option value="FlashLog">FlashLog</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="kpis-container">
+                <div class="card-kpi">
+                    <span>TOTAL DE REMESSAS</span>
+                    <h3 id="kpiTotal">10</h3>
+                </div>
+                <div class="card-kpi alerta">
+                    <span>REMESSAS EM ATRASO</span>
+                    <h3 id="kpiAtraso">7</h3>
+                </div>
+                <div class="card-kpi">
+                    <span>ÍNDICE DE ATRASO</span>
+                    <h3 id="kpiIndice">70%</h3>
+                </div>
+            </div>
+
+            <div class="graficos-container">
+                <div class="card-grafico">
+                    <h4>Atrasos por Frota</h4>
+                    <div class="canvas-holder">
+                        <canvas id="chartFrota"></canvas>
+                    </div>
+                </div>
+                <div class="card-grafico">
+                    <h4>Zonas com Maior Gargalo</h4>
+                    <div class="canvas-holder">
+                        <canvas id="chartRegiao"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tabela-container">
+                <h4>Logs de Ocorrências Extranet</h4>
+                <div class="tabela-responsiva">
+                    <table id="tabelaLogs">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>TRANSPORTADORA</th>
+                                <th>REGIÃO</th>
+                                <th>ACORDADO</th>
+                                <th>REALIZADO</th>
+                                <th>STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-regiao="Sudeste" data-empresa="RotaMax" data-status="ATRASADO">
+                                <td>#301</td>
+                                <td>RotaMax</td>
+                                <td>Sudeste</td>
+                                <td>3 dias</td>
+                                <td>7 dias</td>
+                                <td><span class="badge atrasado">ATRASADO</span></td>
+                            </tr>
+                            <tr data-regiao="Sul" data-empresa="ViaCargo" data-status="NO PRAZO">
+                                <td>#302</td>
+                                <td>ViaCargo</td>
+                                <td>Sul</td>
+                                <td>5 dias</td>
+                                <td>5 dias</td>
+                                <td><span class="badge no-prazo">NO PRAZO</span></td>
+                            </tr>
+                            <tr data-regiao="Nordeste" data-empresa="FlashLog" data-status="ATRASADO">
+                                <td>#303</td>
+                                <td>FlashLog</td>
+                                <td>Nordeste</td>
+                                <td>4 dias</td>
+                                <td>9 dias</td>
+                                <td><span class="badge atrasado">ATRASADO</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

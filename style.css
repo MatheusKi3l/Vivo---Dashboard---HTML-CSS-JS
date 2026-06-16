@@ -1,0 +1,411 @@
+:root {
+    --background-apps: #0c0c0e;
+    --background-menu: #141416;
+    --background-dash: #09090B;
+    --vermelho: #F43E4E;
+    --roxo: #A855F7;
+    --text-cinza: #71717a;
+    --text-menu: #a1a1aa;
+    --text-branco: #ffffff;
+    --hover-menu: #27272A;
+    --font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-dash);
+    color: var(--text-branco);
+    overflow-x: hidden;
+}
+
+/* Container Principal do Layout */
+.layout-wrapper {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.menu-lateral {
+    width: 240px;
+    min-width: 240px;
+    background-color: var(--background-menu);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border-right: 1px solid #27272a;
+    transition: transform 0.3s ease;
+    z-index: 999;
+}
+
+.header-menu h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.opcoes-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.opcoes-menu p {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-cinza);
+    margin: 1.2rem 0 0.4rem 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+/* Links do Menu */
+.btn-menu {
+    text-decoration: none;
+    color: var(--text-menu);
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.btn-menu:hover {
+    background-color: var(--hover-menu);
+    color: var(--text-branco);
+    border-left: 3px solid var(--roxo);
+}
+
+.btn-menu.ativo {
+    background-color: var(--hover-menu);
+    color: var(--text-branco);
+    font-weight: 600;
+    position: relative;
+}
+
+/* Linha Indicadora Ativa */
+.btn-menu.ativo::before {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: 20%;
+    height: 60%;
+    width: 3px;
+    background-color: var(--roxo);
+    border-radius: 0 4px 4px 0;
+}
+
+.menu-toggle {
+    display: none;
+    position: fixed;
+    top: 1.2rem;
+    left: 1.2rem;
+    background-color: var(--background-menu);
+    color: var(--text-branco);
+    border: 1px solid #27272a;
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    z-index: 1000;
+    font-size: 16px;
+    transition: background 0.2s;
+}
+
+.menu-toggle:hover {
+    background-color: var(--hover-menu);
+}
+
+.dashboard {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.dashboard header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+.dashboard header span {
+    font-size: 22px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.dashboard header p {
+    font-size: 13px;
+    color: var(--text-menu);
+}
+
+.filtros-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.filtro-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.filtro-grupo label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-cinza);
+    text-transform: uppercase;
+    letter-spacing: 0.75px;
+    padding-left: 2px;
+}
+
+.select-custom {
+    position: relative;
+    display: inline-block;
+}
+
+.btn-header {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: var(--background-menu);
+    color: var(--text-branco);
+    border: 1px solid #27272a;
+    padding: 8px 36px 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+    width: 150px;
+}
+
+.btn-header:hover {
+    border-color: #3f3f46;
+    background-color: var(--hover-menu);
+}
+
+.btn-header:focus {
+    border-color: var(--roxo);
+    box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.15);
+}
+
+.select-custom::after {
+    content: "";
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2371717a' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    transition: transform 0.2s ease;
+}
+
+.select-custom:focus-within::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23ffffff' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+}
+
+.btn-header option {
+    background-color: var(--background-menu);
+    color: var(--text-branco);
+    padding: 8px;
+}
+
+.kpis-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-kpi {
+    background-color: var(--background-menu);
+    border: 1px solid #27272a;
+    padding: 1.25rem;
+    border-radius: 8px;
+}
+
+.card-kpi.alerta {
+    border-color: var(--vermelho);
+}
+
+.card-kpi span {
+    font-size: 11px;
+    color: var(--text-cinza);
+    font-weight: 600;
+}
+
+.card-kpi h3 {
+    font-size: 28px;
+    margin-top: 0.25rem;
+    color: var(--roxo);
+}
+
+.card-kpi.alerta h3 {
+    color: var(--vermelho);
+}
+
+.graficos-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-grafico {
+    background-color: var(--background-menu);
+    border: 1px solid #27272a;
+    padding: 1.25rem;
+    border-radius: 8px;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-grafico h4 {
+    font-size: 13px;
+    margin-bottom: 1rem;
+    color: var(--text-branco);
+}
+
+.canvas-holder {
+    flex: 1;
+    position: relative;
+    width: 100%;
+    height: 220px; 
+}
+
+.tabela-container {
+    background-color: var(--background-menu);
+    border: 1px solid #27272a;
+    padding: 1.25rem;
+    border-radius: 8px;
+}
+
+.tabela-container h4 {
+    font-size: 13px;
+    margin-bottom: 1rem;
+}
+
+.tabela-responsiva {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    font-size: 11px;
+    color: var(--text-cinza);
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #27272a;
+}
+
+td {
+    font-size: 13px;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #1c1c1f;
+}
+
+/* Status Badges */
+.badge {
+    font-size: 9px;
+    font-weight: 700;
+    padding: 3px 6px;
+    border-radius: 4px;
+}
+
+.badge.atrasado {
+    background: rgba(244, 62, 78, 0.1);
+    color: var(--vermelho);
+    border: 1px solid var(--vermelho);
+}
+
+.badge.no-prazo {
+    background: rgba(168, 85, 247, 0.1);
+    color: var(--roxo);
+    border: 1px solid var(--roxo);
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-dash);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #27272a;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3f3f46;
+}
+
+@media screen and (max-width: 920px) {
+    .graficos-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .menu-lateral {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        transform: translateX(-100%);
+    }
+
+    .menu-lateral.aberto {
+        transform: translateX(0);
+    }
+
+    .dashboard {
+        padding: 5.5rem 1.2rem 1.2rem 1.2rem;
+    }
+
+    .dashboard header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filtros-header {
+        width: 100%;
+        flex-direction: row; 
+        gap: 0.75rem;
+    }
+
+    .filtro-grupo, 
+    .select-custom, 
+    .btn-header {
+        width: 100%;
+    }
+}
